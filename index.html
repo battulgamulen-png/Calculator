@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clean Calculator</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      }
+
+      .calculator {
+        background: #111827;
+        padding: 20px;
+        width: 300px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .display {
+        background: #020617;
+        color: #38bdf8;
+        font-size: 32px;
+        padding: 15px;
+        text-align: right;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        overflow-x: auto;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      button {
+        height: 55px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        opacity: 0.85;
+      }
+
+      .num {
+        background: #1f2933;
+        color: white;
+      }
+
+      .op {
+        background: #2563eb;
+        color: white;
+      }
+
+      .equal {
+        background: #22c55e;
+        color: white;
+        grid-column: span 2;
+      }
+
+      .clear {
+        background: #ef4444;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div id="display" class="display">0</div>
+
+      <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="op" onclick="append('%')">%</button>
+        <button class="op" onclick="append('/')">÷</button>
+        <button class="op" onclick="append('*')">×</button>
+
+        <button class="num" onclick="append('7')">7</button>
+        <button class="num" onclick="append('8')">8</button>
+        <button class="num" onclick="append('9')">9</button>
+        <button class="op" onclick="append('-')">−</button>
+
+        <button class="num" onclick="append('4')">4</button>
+        <button class="num" onclick="append('5')">5</button>
+        <button class="num" onclick="append('6')">6</button>
+        <button class="op" onclick="append('+')">+</button>
+
+        <button class="num" onclick="append('1')">1</button>
+        <button class="num" onclick="append('2')">2</button>
+        <button class="num" onclick="append('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+        <button class="num" onclick="append('0')">0</button>
+        <button class="num" onclick="append('.')">.</button>
+      </div>
+    </div>
+
+    <script>
+      const display = document.getElementById("display");
+
+      function append(value) {
+        if (display.innerText === "0") {
+          display.innerText = value;
+        } else {
+          display.innerText += value;
+        }
+      }
+
+      function clearDisplay() {
+        display.innerText = "0";
+      }
+
+      function calculate() {
+        try {
+          display.innerText = eval(display.innerText);
+        } catch {
+          display.innerText = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
